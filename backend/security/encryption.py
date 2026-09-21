@@ -2,15 +2,26 @@ import base64
 import os
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 
-KEY_FILE = os.path.join(os.path.dirname(os.path.dirname(__file__)), "encryption.key")
+KEY_FILE = os.path.join(
+    os.path.dirname(os.path.dirname(__file__)),
+    "encryption.key"
+)
 
 
 def get_or_create_key() -> bytes:
+    # Vercel: use an environment variable
+    env_key = os.environ.get("ENCRYPTION_KEY")
+
+    if env_key:
+        return base64.b64decode(env_key)
+
+    # Local development: use the local key file
     if os.path.exists(KEY_FILE):
         with open(KEY_FILE, "rb") as file:
             return file.read()
 
     key = AESGCM.generate_key(bit_length=256)
+
     with open(KEY_FILE, "wb") as file:
         file.write(key)
 

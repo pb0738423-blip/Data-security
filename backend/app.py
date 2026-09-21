@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 from flask import Flask, jsonify, request, render_template, send_from_directory
 from werkzeug.utils import secure_filename
@@ -8,7 +9,12 @@ from backend.ai_monitor import analyze_transfer
 
 BASE_DIR = Path(__file__).resolve().parent
 FRONTEND_DIR = BASE_DIR.parent / "frontend"
-STORAGE_DIR = BASE_DIR / "storage" / "encrypted"
+
+if os.environ.get("VERCEL"):
+    STORAGE_DIR = Path("/tmp/secure_data_transfer/encrypted")
+else:
+    STORAGE_DIR = BASE_DIR / "storage" / "encrypted"
+
 STORAGE_DIR.mkdir(parents=True, exist_ok=True)
 
 app = Flask(
