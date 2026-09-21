@@ -2,9 +2,9 @@ from pathlib import Path
 from flask import Flask, jsonify, request, render_template, send_from_directory
 from werkzeug.utils import secure_filename
 
-from database import initialize_database, add_transfer, list_transfers
-from security.encryption import encrypt_bytes, encode_bytes
-from ai_monitor import analyze_transfer
+from backend.database import initialize_database, add_transfer, list_transfers
+from backend.security.encryption import encrypt_bytes, encode_bytes
+from backend.ai_monitor import analyze_transfer
 
 BASE_DIR = Path(__file__).resolve().parent
 FRONTEND_DIR = BASE_DIR.parent / "frontend"
