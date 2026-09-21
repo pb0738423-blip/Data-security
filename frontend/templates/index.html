@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IntelligentCrypt | Secure Transfer</title>
+    
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <main class="container">
+        <section class="hero">
+            <p class="eyebrow">IntelligentCrypt</p>
+            <h1>Secure Data Transfer Between Organizations</h1>
+            <p class="subtitle">
+                Upload a file, encrypt it using AES-256-GCM, and record the transfer
+                with a basic risk-monitoring result.
+            </p>
+        </section>
+
+        <section class="card" id="login-card">
+            <h2>Login</h2>
+            <form id="login-form">
+                <label for="username">Username</label>
+                <input id="username" value="admin" required>
+
+                <label for="password">Password</label>
+                <input id="password" type="password" value="admin123" required>
+
+                <button type="submit">Login</button>
+            </form>
+            <p id="login-message" class="message"></p>
+        </section>
+
+        <section class="card hidden" id="transfer-card">
+            <div class="section-heading">
+                <h2>Create Transfer</h2>
+                <span class="status-badge">Authenticated</span>
+            </div>
+
+            <form id="transfer-form">
+                <label for="sender">Sender Organization</label>
+                <input id="sender" value="Organization A" required>
+
+                <label for="receiver">Receiver Organization</label>
+                <input id="receiver" value="Organization B" required>
+
+                <label for="file">Select File</label>
+                <input id="file" type="file" required>
+
+                <button type="submit">Encrypt & Transfer</button>
+            </form>
+            <p id="transfer-message" class="message"></p>
+        </section>
+
+        <section class="card hidden" id="history-card">
+            <div class="section-heading">
+                <h2>Transfer History</h2>
+                <button id="refresh-button" class="secondary">Refresh</button>
+            </div>
+            <div id="history"></div>
+        </section>
+    </main>
+
+   
+   <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+
+# Virtual environments
+venv/
+.venv/
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Environment/secrets
+.env
+
+# Generated encrypted files
+backend/storage/encrypted/*
+
+# Editor files
+.vscode/
+.idea/
+
+# Windows files
+Thumbs.db
+# Encryption key
+backend/encryption.key
